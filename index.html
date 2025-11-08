@@ -146,6 +146,11 @@
   </style>
 
   <style>
+    /* Override Bulma's is-max-desktop max-width (1152px) with a larger value */
+    .container.is-max-desktop {
+      max-width: 1200px;
+    }
+    
     #teaser-video {
       max-width: 100%;
       margin: 0 auto;
@@ -228,21 +233,16 @@
             <img id="architecture-img" src="images/architecture_onerow_v12-1.png" alt="Architecture" style="width: 95%;">
           </div>
           <br>
-
-
           <h2 class="title is-4" style="font-weight: 700;">Qualitative Visualization</h2>
           <div class="content has-text-centered">
             <p>
-              <!-- Reconstruction of In-the-wild Photos/Videos with VGGT. Click on any thumbnail below to view the 3D reconstruction. -->
-              TODO
+               Different initial miscalibration all results in similar recalibration results.
             </p>
-          </div>
-          <!-- <div class="model-viewer-container">
-            <model-viewer id="QualitativeResult" src="resources/qualitative/colosseum_v4.glb" alt="3D Model" loading="eager" touch-action="pan-y" environment-image="legacy" camera-orbit="180deg 70deg auto" zoom-sensitivity="0.2" camera-controls="" disable-tap="" min-camera-orbit="auto auto 1m" max-camera-orbit="auto auto 10m" interaction-prompt="none" shadow-intensity="0" ar="" disable-shadow="" ar-modes="webxr scene-viewer quick-look" style="width: 90%; height: 90%; background: #ffffff; margin: 0 auto;">
-            </model-viewer>
-          </div> -->
-          <br>
-          <style>
+            <video id="teaser-video" autoplay="" muted="" loop="" playsinline="" height="100%" width="100%">
+              <source src="media/fused_slerp_videos.mp4" type="video/mp4">
+              <!-- <source src="media/teaser_video_compressed_color.mp4" type="video/mp4"> -->
+            </video>
+          <!-- <style>
             .thumbnail-container img, .thumbnail-container video {
               transition: all 0.3s ease;
               border: 3px solid transparent;
@@ -353,7 +353,7 @@
                 });
               });
             });
-          </script>
+          </script> -->
 
           <br>
 
