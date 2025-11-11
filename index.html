@@ -146,10 +146,10 @@
   </style>
 
   <style>
-    /* Override Bulma's is-max-desktop max-width (1152px) with a larger value */
+    /* Override Bulma's is-max-desktop max-width (1152px) with a larger value
     .container.is-max-desktop {
       max-width: 1200px;
-    }
+    } */
     
     #teaser-video {
       max-width: 100%;
@@ -197,6 +197,9 @@
       <div class="columns is-centered">
         <div class="column is-full-width has-text-centered">
 
+          <!-- ############ -->
+          <!-- # ABSTRACT # -->
+          <!-- ############ -->
 
           <h2 class="title is-4" style="font-weight: 700;">Abstract</h2>
           <div class="content has-text-justified">
@@ -211,172 +214,98 @@
                 step alignment process. 
             </p>
           </div>
+
           <br>
 
+          <!-- ###################### -->
+          <!-- # METHOD DESCRIPTION # -->
+          <!-- ###################### -->
 
           <h2 class="title is-4" style="font-weight: 700;">Method</h2>
+
           <div class="content has-text-justified">
+
             <p>
-                First, we perform an implicit alignment 
+                First, we perform an <b>implicit alignment</b> 
                 by regressing a coarse calibration matrix directly from the BEV 
                 features. To ease this alignment, we enforce semantic consistency 
                 between BEV representations across modalities using a contrastive 
                 loss inspired by CLIP, guiding both networks toward a unified feature 
-                space. In the second step, we leverage our BEV formulation to explicitly 
-                align the features of one modality with the other, refining the initial 
-                coarse estimate into a final, more accurate calibration matrix.
+                space. In the second step, we leverage our BEV formulation to <b>explicitly 
+                align</b> the features of one modality with the other, refining the initial 
+                coarse estimate into a final, accurate calibration matrix.
             </p>
           </div>
+
           <div class="content has-text-centered">
-            <!-- <img id="teaser" src="https://placehold.co/600x400" alt="Teaser image" style="width: 100%;"> -->
-            <!-- <img id="architecture-img" src="images/architecture_v4.png" alt="Architecture"> -->
             <img id="architecture-img" src="images/architecture_onerow_v12-1.png" alt="Architecture" style="width: 95%;">
           </div>
+
           <br>
+
+          <!-- ############################# -->
+          <!-- # QUALITATIVE VISUALIZATION # -->
+          <!-- ############################# -->
+          
           <h2 class="title is-4" style="font-weight: 700;">Qualitative Visualization</h2>
-          <div class="content has-text-centered">
+
+          <div class="content has-text-justified">
+
             <p>
-               Different initial miscalibration all results in similar recalibration results.
+               Our method demonstrates robustness in LiDAR-camera calibration. 
+               Starting from different initial mis-calibration states, CalibBEV consistently 
+               recovers a close approximation of the true calibration matrix, showcasing the 
+               method's ability to handle various initialization conditions while achieving 
+               accurate and reliable calibration results.
             </p>
             <video id="teaser-video" autoplay="" muted="" loop="" playsinline="" height="100%" width="100%">
               <source src="media/fused_slerp_videos.mp4" type="video/mp4">
               <!-- <source src="media/teaser_video_compressed_color.mp4" type="video/mp4"> -->
             </video>
-          <!-- <style>
-            .thumbnail-container img, .thumbnail-container video {
-              transition: all 0.3s ease;
-              border: 3px solid transparent;
-              cursor: pointer;
-            }
-            .thumbnail-selected {
-              transform: scale(1.2);
-              border: 6px solid #79b4f2 !important; 
-              box-shadow: 0 0 10px rgba(121, 180, 242, 0.5);
-              z-index: 10;
-              position: relative;
-            }
-            
-            /* New styles for responsive horizontal gallery */
-            .thumbnail-container {
-              display: flex;
-              flex-wrap: nowrap;
-              overflow-x: auto;
-              gap: 10px;
-              padding: 10px 0;
-              -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-              scrollbar-width: thin;
-              align-items: center;
-            }
-            
-            .thumbnail-container img, 
-            .thumbnail-container video {
-              flex: 0 0 auto;
-              width: auto;
-              height: 120px; /* Consistent height */
-              object-fit: cover;
-              max-width: none;
-            }
-            
-            /* Custom scrollbar styling */
-            .thumbnail-container::-webkit-scrollbar {
-              height: 6px;
-            }
-            
-            .thumbnail-container::-webkit-scrollbar-track {
-              background: #f1f1f1;
-              border-radius: 10px;
-            }
-            
-            .thumbnail-container::-webkit-scrollbar-thumb {
-              background: #888;
-              border-radius: 10px;
-            }
-            
-            .thumbnail-container::-webkit-scrollbar-thumb:hover {
-              background: #555;
-            }
-            
-            /* Adjust for smaller screens */
-            @media (max-width: 768px) {
-              .thumbnail-container img,
-              .thumbnail-container video {
-                height: 100px;
-              }
-            }
-          </style>
-          <script>
-            // The problem is here - you're trying to select an element that doesn't exist
-            // document.querySelector('#thumbnail-qualitative img[src="resources/qualitative/college.png"]').classList.add('thumbnail-selected');
-            
-            // Instead, select the first element that actually exists in your thumbnail container
-            document.addEventListener('DOMContentLoaded', function() {
-              // Select the first element in the thumbnail container (video or image)
-              const firstThumbnail = document.querySelector('#thumbnail-qualitative video, #thumbnail-qualitative img');
-              if (firstThumbnail) {
-                firstThumbnail.classList.add('thumbnail-selected');
-                // If it's a video, play it
-                if (firstThumbnail.tagName.toLowerCase() === 'video') {
-                  firstThumbnail.play();
-                }
-              }
-              
-              document.querySelectorAll('#thumbnail-qualitative img, #thumbnail-qualitative video').forEach(el => {
-                // Rest of your click handler code remains the same
-                el.addEventListener('click', () => {
-                  const glbSrc = el.getAttribute('data-glb');
-                  const modelViewer = document.getElementById('QualitativeResult');
-                  modelViewer.setAttribute('src', glbSrc);
-                  modelViewer.cameraOrbit = "180deg 70deg auto";
-                  modelViewer.resetTurntableRotation(0);
-                  modelViewer.jumpCameraToGoal();
+            <div class="content has-text-centered">
+              <p>
+                <h6 style="font-size:15px;font-weight:normal;">
+                  The initial mis-calibration for <b>(A)</b> is 10°, for <b>(B)</b> is 25°, for <b>(C)</b> is 50° and for <b>(D)</b> is 100° around the Yaw axis.
+                </h6>
+              </p>
+            </div>
 
-                  // Remove selection class from all elements
-                  document.querySelectorAll('#thumbnail-qualitative img, #thumbnail-qualitative video').forEach(element => {
-                      element.classList.remove('thumbnail-selected');
-                  });
-                  
-                  // Add selection class to clicked element
-                  el.classList.add('thumbnail-selected');
-                  
-                  // Play video if it's a video element
-                  if (el.tagName.toLowerCase() === 'video') {
-                      el.play();
-                  }
-                  
-                  // Pause all other videos
-                  document.querySelectorAll('#thumbnail-qualitative video').forEach(video => {
-                      if (video !== el) {
-                          video.pause();
-                          video.currentTime = 0;
-                      }
-                  });
-                });
-              });
-            });
-          </script> -->
-
-          <br>
-
-          <h2 class="title is-4" style="font-weight: 700;">Quantitative Comparison</h2>
-          <div class="content has-text-justified" style="align-self: flex-start;">
-            <p>
-               CalibBEV significantly outperforms all other methods present in the image-to-point cloud alignment literature.
-            </p>
-            <p>
-                Please refer to our paper for more quantitative results: e.g. multi-camera, overfitting and ablations.
-            </p>
           </div>
 
-          <img src="images/quantitative.png" alt="Quantitative Comparison" style="width: 90%;">
+          <br>
+          
+          <!-- ########################### -->
+          <!-- # QUANTITATIVE COMPARISON # -->
+          <!-- ########################### -->
 
-        </div>
+          <div class="content has-text-centered">
+
+            <h2 class="title is-4" style="font-weight: 700;">Quantitative Comparison</h2>
+
+            <div class="content has-text-justified" style="align-self: flex-start;">
+              <p>
+                CalibBEV significantly outperforms all other methods present in the image-to-point cloud alignment literature. 
+                Noticeably, our method is able to achieve much lower standard deviation in both rotation (RRE) and translation (RTE) error.
+              </p>
+            </div>
+            <img src="images/quantitative.png" alt="Quantitative Comparison" style="width: 90%;">
+            <div class="content has-text-justified" style="align-self: flex-start;">
+              <p>
+                  Please refer to our paper for more quantitative results: e.g. multi-camera, overfitting and ablations.
+              </p>
+            </div>
+
+          </div>
+
       </div>
+
     </div>
+
   </section>
 
-  <section class="section" id="News">
-    
-  </section>
+  <!-- ######## -->
+  <!-- # NEWS # -->
+  <!-- ######## -->
   
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
@@ -391,29 +320,43 @@
       </div>
     </div>
 
+    <!-- ########## -->
+    <!-- # BIBTEX # -->
+    <!-- ########## -->
+
     <div class="container is-max-desktop content">
       <h2 class="title is-4" style="font-weight: 700;">BibTeX</h2>
-      <pre><code>@inproceedings{TODO,
-  title={CalibBEV: LiDAR-Camera Calibration via BEV Alignment},
-  author={D'Addeo, Filippo and Cipelli, Lorenzo and Cardace, Adriano and Ghelfi, Emanuele and Zinelli, Andrea and Bertozzi, Massimo},
-  booktitle={TODO},
-  year={2026}
-}</code></pre>
+      <pre>
+        <code>
+          @inproceedings{D'Addeo_2026_WACV, title={CalibBEV: LiDAR-Camera Calibration via BEV Alignment},
+            author={D'Addeo, Filippo and Cipelli, Lorenzo and Cardace, Adriano and Ghelfi, Emanuele and Zinelli, Andrea and Bertozzi, Massimo},
+            booktitle={Proceedings of the Winter Conference on Applications of Computer Vision (WACV)},
+            month={February},
+            year={2026}}
+        </code>
+      </pre>
     </div>
   </section>
 
-  <!-- booktitle={2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, -->  
+  <!-- ####################-->
+  <!-- # ACKNOWLEDGEMENTS # -->
+  <!-- #################### -->
 
   <section class="section" id="Acknowledgements" style="padding-top: 0rem;">
     <div class="container is-max-desktop content">
       <h2 class="title is-4" style="font-weight: 700;">Acknowledgements</h2>
       <p>
-        Acknowledgments to the authors of the compared methods.
+        We would like to express our sincere gratitude to <b>Adriano Cardace</b>, it's been a great pleasure both working and sharing ideas with you.
       </p>
+      <p>
+        We are deeply gratuful to our VisLab supervisors, <b>Emanuele Ghelfi</b> and <b>Andrea Zinelli</b>, whose passion, support and discussions made a significant difference
+        in the process of realization of this work.
+      </p>
+      <p>  
+        Finally, we would like to thank <b>Massimo Bertozzi</b> for his valuable support.
       </p>
     </div>
   </section>
-
 
   <footer class="footer">
     <div class="container">
@@ -421,7 +364,7 @@
         <div class="column is-8">
           <div class="content">
             <p>
-              This webpage template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+              This webpage template is adapted from <a href="https://vgg-t.github.io/">VGGT</a>,
               under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a>.
             </p>
           </div>
